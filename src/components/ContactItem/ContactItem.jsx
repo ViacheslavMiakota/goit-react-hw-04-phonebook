@@ -1,18 +1,12 @@
 import React from 'react';
 import { Item } from 'components/ContactItem/ContactItem.styled';
-
+import { FormButton } from 'components/Form/Form.styled';
 const ContactItem = ({ id, name, number, onDelete }) => {
   return (
     <Item key={id}>
       <p>{name}:</p>
       <p>{number}</p>
-      <button
-        onClick={() => {
-          onDelete(id);
-        }}
-      >
-        DELETE
-      </button>
+      <FormButton onClick={() => onDelete(id)}>DELETE</FormButton>
     </Item>
   );
 };
