@@ -29,7 +29,7 @@ class ContactForm extends React.Component {
     console.log(this.state);
     console.log(this.state.name);
     if (this.props.contacts.find(contact => contact.name === name)) {
-      return Notify.warning('${name} is is already in contacts.');
+      return Notify.warning('{name} is already in contacts');
     } else {
       this.props.onSubmit(this.state);
       this.reset();
