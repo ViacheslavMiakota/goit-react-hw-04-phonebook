@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {
   FormBox,
   FormLabel,
@@ -7,16 +9,31 @@ import {
 } from 'components/Form/Form.styled';
 
 class ContactForm extends React.Component {
+  static defaultProps = {
+    onSubmit: PropTypes.func.isRequired,
+    contact: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        number: PropTypes.string,
+      })
+    ).isRequired,
+  };
   state = {
     name: '',
     number: '',
   };
   handleSubmit = event => {
     event.preventDefault();
+    const { name } = this.state;
     console.log(this.state);
     console.log(this.state.name);
-    this.props.onSubmit(this.state);
-    this.reset();
+    if (this.props.contacts.find(contact => contact.name === name)) {
+      return Notify.warning('${name} is is already in contacts.');
+    } else {
+      this.props.onSubmit(this.state);
+      this.reset();
+    }
   };
   handleChange = event => {
     const { name, value } = event.currentTarget;
