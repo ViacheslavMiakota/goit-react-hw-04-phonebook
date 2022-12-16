@@ -33,7 +33,7 @@ class ContactForm extends React.Component {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      return Notify.warning('{name} is already in contacts');
+      return Notify.warning(`${name} is already in contacts`);
     } else {
       this.props.onSubmit(this.state);
       this.reset();
