@@ -15,3 +15,9 @@ export const ContactTitle = styled.h2`
   margin-block-end: 0.57em;
   margin-block-start: 0.57em;
 `;
+export const Warning = styled.p`
+  color: green;
+  font-size: 24px;
+  display: flex;
+  width: 350px;
+`;

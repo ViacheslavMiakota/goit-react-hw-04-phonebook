@@ -1,6 +1,11 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import { Container, Title, ContactTitle } from 'components/App/App.styled';
+import {
+  Container,
+  Title,
+  ContactTitle,
+  Warning,
+} from 'components/App/App.styled';
 import ContactForm from 'components/Form/Form';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
@@ -54,11 +59,20 @@ class App extends React.Component {
         <Title>Phonebook</Title>
         <ContactForm onSubmit={this.addContact} contacts={contacts} />
         <ContactTitle>Contacts</ContactTitle>
-        <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList
-          contacts={this.getContacts()}
-          onDelete={this.deleteContact}
-        />
+
+        {contacts.length > 0 ? (
+          <>
+            <Filter value={filter} onChange={this.changeFilter} />
+            <ContactList
+              contacts={this.getContacts()}
+              onDelete={this.deleteContact}
+            />
+          </>
+        ) : (
+          <Warning>
+            Your phone book is empty, your first contact has been added
+          </Warning>
+        )}
       </Container>
     );
   }
