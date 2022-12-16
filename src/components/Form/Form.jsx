@@ -44,7 +44,7 @@ class ContactForm extends React.Component {
     this.setState({ [name]: value });
   };
   reset = () => {
-    this.setState({ contacts: [], name: '', number: '' });
+    this.setState({ name: '', number: '' });
   };
   render() {
     return (

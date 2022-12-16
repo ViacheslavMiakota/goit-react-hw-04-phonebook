@@ -21,9 +21,6 @@ class App extends React.Component {
     filter: '',
   };
 
-  formSubmitHandler = data => {
-    console.log(data);
-  };
   addContact = ({ name, number }) => {
     console.log(number);
     const newContact = {
