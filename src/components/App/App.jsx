@@ -20,9 +20,24 @@ class App extends React.Component {
     ],
     filter: '',
   };
-
+  componentDidMount() {
+    console.log('App componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Нові контакти');
+      localStorage.setItem('contacs', JSON.stringify(this.state.contacts));
+    }
+  }
+  componentWillUnmount() {
+    console.log('App componentWillUnmount');
+  }
   addContact = ({ name, number }) => {
-    console.log(number);
     const newContact = {
       id: nanoid(),
       name,
@@ -50,13 +65,13 @@ class App extends React.Component {
   };
 
   render() {
+    console.log('app render');
     const { filter, contacts } = this.state;
     return (
       <Container>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={this.addContact} contacts={contacts} />
         <ContactTitle>Contacts</ContactTitle>
-
         {contacts.length > 0 ? (
           <>
             <Filter value={filter} onChange={this.changeFilter} />

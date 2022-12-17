@@ -26,8 +26,6 @@ class ContactForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const { name } = this.state;
-    console.log(this.state);
-    console.log(this.state.name);
     if (
       this.props.contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
