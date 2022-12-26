@@ -26,7 +26,9 @@ class App extends React.Component {
     console.log(contacts);
     const parsedContacts = JSON.parse(contacts);
     console.log(parsedContacts);
-    this.setState({ contacts: parsedContacts });
+    if (parsedContacts > 0) {
+      this.setState({ contacts: parsedContacts });
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     console.log('App componentDidUpdate');
@@ -64,11 +66,13 @@ class App extends React.Component {
 
   render() {
     const { filter, contacts } = this.state;
+    console.log(contacts.length);
     return (
       <Container>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={this.addContact} contacts={contacts} />
         <ContactTitle>Contacts</ContactTitle>
+
         {contacts.length > 0 ? (
           <>
             <Filter value={filter} onChange={this.changeFilter} />
