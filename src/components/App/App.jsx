@@ -62,7 +62,7 @@ const App = () => {
     if (parsedContacts > 0) {
       setContacts(parsedContacts);
     }
-  }, []);
+  }, [parsedContacts]);
   return (
     <Container>
       <Title>Phonebook</Title>

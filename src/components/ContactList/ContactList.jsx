@@ -22,6 +22,7 @@ const ContactList = ({ contacts, onDelete }) => {
 };
 
 export default ContactList;
+
 ContactList.protoTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({

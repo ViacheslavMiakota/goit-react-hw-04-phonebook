@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Item } from 'components/ContactItem/ContactItem.styled';
 import { FormButton } from 'components/Form/Form.styled';
+
 const ContactItem = ({ id, name, number, onDelete }) => {
   return (
     <Item key={id}>
@@ -12,6 +13,7 @@ const ContactItem = ({ id, name, number, onDelete }) => {
   );
 };
 export default ContactItem;
+
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
