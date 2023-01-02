@@ -32,12 +32,10 @@ const App = () => {
   };
 
   const changeFilter = event => {
-    return { filter: event.currentTarget.value };
+    setFilter(event.currentTarget.value);
   };
 
   const getContacts = () => {
-    console.log(contacts);
-    console.log(setFilter);
     const normalFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalFilter)
