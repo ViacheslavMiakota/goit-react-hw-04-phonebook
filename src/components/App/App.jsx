@@ -19,8 +19,14 @@ const contactDefault = [
 ];
 
 const App = () => {
-  const [contacts, setContacts] = useState(contactDefault);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? contactDefault
+  );
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const addContact = ({ name, number }) => {
     const newContact = {
@@ -49,18 +55,6 @@ const App = () => {
     );
   };
 
-  const contacsStorage = localStorage.getItem('contacts');
-  const parsedContacts = JSON.parse(contacsStorage);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  useEffect(() => {
-    if (parsedContacts > 0) {
-      setContacts(parsedContacts);
-    }
-  }, [parsedContacts]);
   return (
     <Container>
       <Title>Phonebook</Title>
